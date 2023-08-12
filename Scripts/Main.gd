@@ -64,6 +64,7 @@ func _process(delta):
 func _on_draw():
 	text_money.text = "Money: " + ("%.2fG" % money)
 	container.text = str(water_amount) + "L"
+	water.max_value = capacity
 	water.value = water_amount
 	_game_data_level_texts()
 	_button_upgrade_texts()
@@ -116,7 +117,7 @@ func _button_upgrade_states():
 
 func _button_upgrade_texts():
 	btn_sell_upgrade.text = "Upgrade\n+0.1L/Level\nCost: " + str(sell_upgrade_cost) + "G"
-	btn_water_drop_upgrade.text = "Upgrade\n+0.02L/Level\nCost: " + str(water_drop_upgrade_cost) + "G"
+	btn_water_drop_upgrade.text = "Upgrade\n+0.03L/Level\nCost: " + str(water_drop_upgrade_cost) + "G"
 	btn_capacity_upgrade.text = "Upgrade\n+0.5L/Level\nCost: " + str(capacity_upgrade_cost) + "G"
 	btn_auto_drop_upgrade.text = "Upgrade\n+0.02L/Level\nCost: " + str(auto_drop_upgrade_cost) + "G"
 	btn_auto_sell_upgrade.text = "Upgrade\n+0.02L/Level\nCost: " + str(auto_sell_upgrade_cost) + "G"
@@ -125,7 +126,7 @@ func _on_water_drop_upgrade_pressed():
 	if money >= water_drop_upgrade_cost:
 		money -= water_drop_upgrade_cost
 		water_drop_upgrade_level += 1
-		water_drop = 0.01 + (0.02 * water_drop_upgrade_level)
+		water_drop = 0.01 + (0.03 * water_drop_upgrade_level)
 
 func _on_capacity_upgrade_pressed():
 	if money >= capacity_upgrade_cost:
@@ -158,7 +159,7 @@ func _load_game_data():
 	auto_drop_upgrade_level = gamedata.auto_drop_upgrade_level
 	auto_sell_upgrade_level = gamedata.auto_sell_upgrade_level
 	sell_rate = 1 + (0.1 * sell_upgrade_level)
-	water_drop = 0.01 + (0.02 * water_drop_upgrade_level)
+	water_drop = 0.01 + (0.03 * water_drop_upgrade_level)
 	capacity = 0.5 + ( 0.5 * capacity_upgrade_level)
 	auto_drop_rate = 0.02 * auto_drop_upgrade_level
 	auto_sell_rate = 0.02 * auto_sell_upgrade_level
